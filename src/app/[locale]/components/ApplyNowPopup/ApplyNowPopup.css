@@ -1,0 +1,170 @@
+
+/* ApplyNowPopup.css */
+.anp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 10000;
+}
+
+.anp-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  z-index: 10001;
+  transition: background 0.2s;
+}
+.anp-close:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+.anp-popup {
+  position: relative;
+  background: transparent;
+  padding: 1rem 0 2rem;
+  max-width: 90vw;
+  width: 100%;
+}
+
+.anp-header {
+  text-align: center;
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.anp-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.anp-card {
+  position: relative;
+  width: 120px;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  transition: width 0.4s cubic-bezier(0.25,0.8,0.5,1), background 0.3s;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.anp-card.active {
+  width: 600px;
+  background: none;
+  backdrop-filter: none;
+}
+
+.anp-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;  /* center horizontally */
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.2rem;
+  z-index: 5;
+  pointer-events: none;
+}
+.anp-card.active .anp-label {
+  display: none;
+}
+
+.anp-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.anp-card.active .anp-bg {
+  opacity: 1;
+}
+
+.anp-gradient {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.anp-card.active .anp-gradient {
+  opacity: 1;
+}
+
+.anp-info {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.1s;
+  z-index: 3;
+}
+.anp-card.active .anp-info {
+  opacity: 1;
+}
+
+.anp-info h3 {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+}
+
+.anp-info p {
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #f0f0f5;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.anp-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: #007aff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  animation: pulse 2s infinite;
+  transition: background 0.3s ease;
+  z-index: 3;
+}
+.anp-btn:hover {
+  background: #005ecb;
+}

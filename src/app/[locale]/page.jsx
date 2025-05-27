@@ -23,10 +23,13 @@ import { useTranslations } from "next-intl";
 
 import teamsByYear from "./shared/timelinedata/teams";
 
+import ApplyNowPopup from "./components/ApplyNowPopup";
+
 export default function Home() {
   const t = useTranslations("HomePage");
 
-  const [isOpen, setIsOpen] = useState(false);
+  // Mostrar el popup al entrar
+  const [isOpen, setIsOpen] = useState(true);
   const [team, setTeam] = useState(undefined);
   const teamClassName = `opacity-80 hover:opacity-100 transition-all hover:cursor-pointer`;
   const timelineItem = `max-w-[450px] bg-[#121837] border border-[#666A95] text-white text-center rounded-2xl flex flex-col items-center`;
@@ -53,6 +56,8 @@ export default function Home() {
 
   return (
     <>
+      {/* Muestra el popup si isOpen es true */}
+      {isOpen && <ApplyNowPopup onClose={() => setIsOpen(false)} />}
       <div className="text-center h-fit  space-y-8 lg:space-y-20 2xl:space-y-10 bg-gradient-to-t from-[#101321] to-[#40D1FF] px-5 md:px-40 flex flex-col items-center pt-5">
         {/* <Timer /> */}
         <p className="mt-4 font-bold text-xl xs:text-3xl lg:text-5xl 3xl:text-6xl w-full sm:w-5/6 md:w-5/6  text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
@@ -361,13 +366,11 @@ export default function Home() {
                 {yearData.teams.length > 1 && (
                   <TimelineOppositeContent className="2xl:flex 2xl:justify-center">
                     <div
-                      className={`
-                      ${
+                      className={`${
                         i === teamsByYear.length - 1
                           ? currentTimelineItem
                           : timelineItem
-                      }
-                    `}
+                      }`}
                     >
                       <div className="gap-4 px-4 flex flex-col md:flex-row items-center w-full justify-evenly bg-gradient-to-b from-cyan-600 to-cyan-900 rounded-t-2xl py-4">
                         <p className="text-2xl text-center font-semibold">
@@ -420,7 +423,7 @@ export default function Home() {
                   </p>
                   <TimelineConnector />
                 </TimelineSeparator>
-                
+
                 <TimelineContent className=" w-full  flex items-center">
                   <div
                     className={`${
