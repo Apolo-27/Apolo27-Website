@@ -24,11 +24,12 @@ import { useTranslations } from "next-intl";
 import teamsByYear from "./shared/timelinedata/teams";
 
 import ApplyNowPopup from "./components/ApplyNowPopup";
+import ApplyButton from "./components/ApplyNowPopup/ApplyButton";
 
 export default function Home() {
   const t = useTranslations("HomePage");
 
-  // Mostrar el popup al entrar
+  // Mostrar el popup al dar click, ahora se muestra inicialmente
   const [isOpen, setIsOpen] = useState(true);
   const [team, setTeam] = useState(undefined);
   const teamClassName = `opacity-80 hover:opacity-100 transition-all hover:cursor-pointer`;
@@ -56,7 +57,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Muestra el popup si isOpen es true */}
       {isOpen && <ApplyNowPopup onClose={() => setIsOpen(false)} />}
       <div className="text-center h-fit  space-y-8 lg:space-y-20 2xl:space-y-10 bg-gradient-to-t from-[#101321] to-[#40D1FF] px-5 md:px-40 flex flex-col items-center pt-5">
         {/* <Timer /> */}
@@ -610,6 +610,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <ApplyButton onClick={() => setIsOpen(true)} />
     </>
   );
 }
